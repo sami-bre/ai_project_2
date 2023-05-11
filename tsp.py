@@ -12,7 +12,7 @@ class TSP:
         for i in range(len(route)-1):
             dist += self.distances[route[i]][route[i+1]]
         dist += self.distances[route[-1]][route[0]]
-        return 1.0 / dist
+        return 1.0 / (dist + 1)
 
     def generatorSuccessStates(self, route):
         neighbours = []
