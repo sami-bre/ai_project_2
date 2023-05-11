@@ -3,10 +3,10 @@ import random
 import sys
 
 from item import Item
-from localSearch import LocalSearchs
+from localSearch import LocalSearch
 from knapsack import Knapsack
 
-def readitems(itemData):
+def readItems(itemData):
     items = []
     for i in range(2,len(itemData)):
         name,weight,price,n_item = itemData[i].split(",")
@@ -33,44 +33,44 @@ with open(textFile) as textData:
 
 weightLimit = int(itemData[0])
 
-items = readitems(itemData)
+items = readItems(itemData)
 
 row = generateRandomRow(len(items))
 
 knapsack = Knapsack(items,weightLimit)
 
-localSearchs = LocalSearchs()
+localSearch = LocalSearch()
 
-hillClimb = localSearchs.randomRestartHillClimbing(row,knapsack)
+hillClimb = localSearch.randomRestartHillClimbing(row,knapsack)
 
-simulatedAnnealing = localSearchs.simulatedAnnealing(row,knapsack)
+simulatedAnnealing = localSearch.simulatedAnnealing(row,knapsack)
 
 population = knapsack.generatorSuccessStates(row)
 
-geneticAlgorithm = localSearchs.geneticAlgorithm(population,knapsack)
+geneticAlgorithm = localSearch.geneticAlgorithm(population,knapsack)
 
 
-dataprint = ""
+dataPrint = ""
 
 match algorithm:
     case "ga":
-        dataprint = f"geneticAlgorithm : {geneticAlgorithm}"
+        dataPrint = f"geneticAlgorithm : {geneticAlgorithm}"
     case "hc":
-        dataprint = f"hillClimb: {hillClimb}"
+        dataPrint = f"hillClimb: {hillClimb}"
     case "sa":
-        dataprint = f"simulatedAnnealing : {simulatedAnnealing}"
+        dataPrint = f"simulatedAnnealing : {simulatedAnnealing}"
     case "all":
-        dataprint = f"""
+        dataPrint = f"""
                           hillClimb: {hillClimb}
                           simulatedAnnealing : {simulatedAnnealing}
                           geneticAlgorithm : {geneticAlgorithm}"""
     case _:
-        dataprint = f"algorithm not found: {algorithm}"
+        dataPrint = f"algorithm not found: {algorithm}"
 
 result = f"""
              =============================================================================
-             ========================  KNAPSACK LOCAL SEREACH  ===========================
+             ========================  KNAPSACK LOCAL SEARCH  ===========================
              =============================================================================
-                       {dataprint}
+                       {dataPrint}
             """
 print(result)

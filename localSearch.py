@@ -1,20 +1,20 @@
 import random,math
 
-class LocalSearchs:
+class LocalSearch:
     def __init__(self) -> None:
         pass
   
-    def hillClimb(self,intialState,problem):
+    def hillClimb(self,initialState,problem):
 
-        current = intialState
+        current = initialState
 
         while True:
             
-            neighbourStates = problem.generatorSuccessStates(current)
+            neighborStates = problem.generatorSuccessStates(current)
 
-            maxState = neighbourStates[0]
+            maxState = neighborStates[0]
 
-            for State in neighbourStates:
+            for State in neighborStates:
                 maxState = State  if problem.fitness(State) > problem.fitness(maxState) else maxState
         
             currentFitness = problem.fitness(current)
@@ -24,10 +24,10 @@ class LocalSearchs:
             else:
                 return current,currentFitness
     
-    def randomRestartHillClimbing(self,intialState,problem):
+    def randomRestartHillClimbing(self,initialState,problem):
         goalStates = []
         for i in range(0,20):
-           randomState = [random.choice([0,1]) for i in intialState]
+           randomState = [random.choice([0,1]) for i in initialState]
 
            goalState = self.hillClimb(randomState,problem)
 
@@ -50,9 +50,9 @@ class LocalSearchs:
             if(T < 0.001):
                 return current ,problem.fitness(current)
             
-            neighbourStates = problem.generatorSuccessStates(current) 
+            neighborStates = problem.generatorSuccessStates(current) 
     
-            nextState = neighbourStates[random.randint(0,len(neighbourStates)-1)]
+            nextState = neighborStates[random.randint(0,len(neighborStates)-1)]
             
             deltaE = problem.fitness(nextState) - problem.fitness(current) 
             
@@ -104,16 +104,16 @@ class LocalSearchs:
                 population.sort( key=lambda s: problem.fitness(s))
                 return population[-1],problem.fitness(population[-1])
 
-            populationWithfitness = []
+            populationWithFitness = []
 
             newPopulation= []
             
             for state in population:
-                populationWithfitness.append((state,problem.fitness(state)))
+                populationWithFitness.append((state,problem.fitness(state)))
 
 
             for i in range(0,len(population)):
-                parentX,parentY = self._selectParents(populationWithfitness)
+                parentX,parentY = self._selectParents(populationWithFitness)
                 child  = self._reproduce(parentX ,parentY )
 
                 if random.random() < mutateRate:

@@ -21,13 +21,13 @@ class Knapsack:
         return score
 
     def generatorSuccessStates(self,state):
-        neighbourStates = []
+        neighborStates = []
         for i in range(0,len(state)): 
-            newNeighour = state[:]
-            newNeighour[i] = 0 if newNeighour[i] == 1 else 1
-            neighbourStates.append(newNeighour)
+            newNeighbor = state[:]
+            newNeighbor[i] = 0 if newNeighbor[i] == 1 else 1
+            neighborStates.append(newNeighbor)
             
-        return neighbourStates
+        return neighborStates
 
 
 
