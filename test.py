@@ -26,12 +26,9 @@ algorithm = sys.argv[1]
 
 textFile =sys.argv[2] 
 
-textData = open(textFile)
-
-try:
+# open and close the above file in a with block instead
+with open(textFile) as textData:
     itemData = textData.read().split("\n")
-finally:
-    textData.close()
 
 
 weightLimit = int(itemData[0])
