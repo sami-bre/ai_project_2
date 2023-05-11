@@ -1,0 +1,9 @@
+20
+Item,weight,value, n_items
+gold,7,5, 1
+book,2,4, 2
+silver,1,7, 2
+phone,9,2, 1
+laptop,5,6, 2
+tv,10,3,1
+headphone,2,1,2
