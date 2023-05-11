@@ -47,7 +47,7 @@ simulatedAnnealing = localSearch.simulatedAnnealing(row,knapsack)
 
 population = knapsack.generatorSuccessStates(row)
 
-geneticAlgorithm = localSearch.geneticAlgorithm(population,knapsack)
+geneticAlgorithm = localSearch.geneticAlgorithmKnapsack(population,knapsack)
 
 
 dataPrint = ""
