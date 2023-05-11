@@ -21,6 +21,16 @@ def generateRandomRow(length):
        row.append(random.choice([0,1]))
     return row
 
+def generatePopulation(length):
+    rows = []
+    for i in range(0,length):
+        row = []
+        for i in range(0,length):
+            row.append(random.choice([0,1]))
+        rows.append(row)
+    return rows
+
+
 print(sys.argv)
 algorithm = sys.argv[1]
 
@@ -45,7 +55,7 @@ hillClimb = localSearch.randomRestartHillClimbing(row,knapsack)
 
 simulatedAnnealing = localSearch.simulatedAnnealing(row,knapsack)
 
-population = knapsack.generatorSuccessStates(row)
+population = generatePopulation(len(items))
 
 geneticAlgorithm = localSearch.geneticAlgorithmKnapsack(population,knapsack)
 
